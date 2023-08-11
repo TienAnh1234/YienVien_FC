@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('ethnic');
             $table->string('gender');
             $table->string('height');
-            $table->string('Weight');
+            $table->string('weight');
             $table->foreignId('address_id')->constrained('addresses')->onDelete('cascade');
             $table->timestamps();
         });

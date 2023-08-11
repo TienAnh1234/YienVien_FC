@@ -30,6 +30,15 @@
     <label class="form-check-label" for="female">Female</label>
     </div>
 
+
+    <div class="form-group">
+    <p>Position:</p>
+    @foreach($position as $position)
+    <input type="checkbox" class="form-check-input" id="position" name="position[]" value="{{$position->id}}">
+    <label class="form-check-label" for="position" style="margin-right:3%">{{$position->name}}</label>
+    @endforeach
+    </div>
+
     <div class="form-group">
         <br>
         <label for="enterHeight">Height</label>
@@ -50,6 +59,8 @@
     </select>
     <br>
     </div>
+
+
 
     <input type="submit" class="btn btn-primary" value="Submit">
     </form>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use App\Models\Footballer;
+use App\Models\Position;
 use Illuminate\Http\Request;
 
 class FootballerController extends Controller
@@ -23,7 +24,8 @@ class FootballerController extends Controller
     public function create()
     {
         $address = Address::all();
-        return view('footballer.create',['address'=>$address]);
+        $position = Position::all();
+        return view('footballer.create',['address'=>$address],['position'=>$position]);
     }
 
     /**
@@ -31,8 +33,18 @@ class FootballerController extends Controller
      */
     public function store(Request $request)
     {
-        Footballer::create($request->all());
-        return redirect()->route('footballer.index');
+       // Footballer::create($request->all());
+        $footballer = new Footballer();
+        $footballer->name = $request->name;
+        $footballer->year_of_birth = $request->year_of_birth;
+        $footballer->ethnic = $request->ethnic;
+        $footballer->gender = $request->gender;
+        $footballer->height = $request->height;
+        $footballer->weight = $request->weight;
+        $footballer->address_id = $request->address_id;
+        $footballer->save();
+        $footballer->positions()->attach($request->position);
+        return redirect('/footballer');
     }
 
     /**
@@ -40,7 +52,9 @@ class FootballerController extends Controller
      */
     public function show(string $id)
     {
-        $footballer = Footballer::find($id);
+       $footballer = Footballer::find($id);
+       return view('footballer.show',['footballer'=>$footballer]);
+
     }
 
     /**
@@ -48,7 +62,9 @@ class FootballerController extends Controller
      */
     public function edit(string $id)
     {
-        
+        $footballer = Footballer::find($id);
+        return view('footballer.edit',['footballer'=>$footballer]);
+
     }
 
     /**
@@ -56,7 +72,7 @@ class FootballerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
     /**
@@ -64,6 +80,8 @@ class FootballerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $footballer = Footballer::find($id);
+        $footballer->delete();
+        return redirect('/footballer');
     }
 }

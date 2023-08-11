@@ -16,4 +16,9 @@ class Footballer extends Model
         return $this->belongsTo(Address::class); 
     }
 
+    public function positions()
+    {
+        return $this->belongsToMany(Position::class); 
+    }
+
 }
