@@ -33,7 +33,6 @@ class FootballerController extends Controller
      */
     public function store(Request $request)
     {
-       // Footballer::create($request->all());
         $footballer = new Footballer();
         $footballer->name = $request->name;
         $footballer->year_of_birth = $request->year_of_birth;
@@ -63,6 +62,7 @@ class FootballerController extends Controller
     public function edit(string $id)
     {
         $footballer = Footballer::find($id);
+        $position = Position::all();
         return view('footballer.edit',['footballer'=>$footballer]);
 
     }
@@ -72,7 +72,17 @@ class FootballerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
+        $footballer = Footballer::find($id);
+        $footballer->name = $request->name;
+        $footballer->year_of_birth = $request->year_of_birth;
+        $footballer->ethnic = $request->ethnic;
+        $footballer->gender = $request->gender;
+        $footballer->height = $request->height;
+        $footballer->weight = $request->weight;
+        $footballer->address_id = $request->address_id;
+        $footballer->save();
+        $footballer->positions()->sync($request->position);
+        return redirect('/footballer');
     }
 
     /**
