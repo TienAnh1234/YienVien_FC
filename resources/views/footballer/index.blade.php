@@ -40,5 +40,9 @@
   </table>
 </div>
 
+@endsection
 
+
+@section('button')
+<a href="/footballer/create" class="btn btn-success">Create footballer</a>
 @endsection

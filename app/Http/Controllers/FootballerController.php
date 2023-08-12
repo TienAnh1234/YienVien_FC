@@ -62,11 +62,12 @@ class FootballerController extends Controller
     public function edit(string $id)
     {
         $footballer = Footballer::find($id);
+        $address = Address::all();
         $position = Position::all();
-        return view('footballer.edit',['footballer'=>$footballer]);
+        return view('footballer.edit',['footballer'=>$footballer ,'position'=>$position,'address'=>$address]);
 
     }
-
+    
     /**
      * Update the specified resource in storage.
      */
