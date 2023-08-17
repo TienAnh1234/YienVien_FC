@@ -6,6 +6,10 @@
 
     <form action="/footballer" method="post">
         @csrf
+    .<div class="form-group">
+        <label for="formFileDisabled" class="form-label">Choose Image</label>
+        <input class="form-control" type="file" id="formFileDisabled" name="image">
+    </div>
     <div class="form-group">
         <label for="enterName">Name</label>
         <input type="text" class="form-control" id="enterName" placeholder="Name" name="name"><br>

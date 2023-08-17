@@ -31,7 +31,8 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         Address::create($request->all());
-        return redirect()->route('address.index');
+        return redirect('/address');
+        
     }
 
     /**

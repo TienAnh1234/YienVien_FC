@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Footballer extends Model
 {
     protected $table='footballers';
-    protected $fillable=['name','year_of_birth','ethnic','gender','height','weight','address_id'];
+    protected $fillable=['name','image','year_of_birth','ethnic','gender','height','weight','address_id'];
     use HasFactory;
 
     public function address()

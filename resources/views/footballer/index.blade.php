@@ -8,6 +8,7 @@
   <table class="table">
     <thead>
       <tr>
+        <th>Image</th>
         <th>ID</th>
         <th>Name</th>
         <th>Year Of Birth</th>
@@ -20,6 +21,7 @@
     <tbody>
     @foreach($footballer as $footballer1)  
     <tr>
+        <td><img src="http://127.0.0.1:8000{{$footballer->image}}" class="img-fluid" alt="Responsive image"></td>
         <td>{{$footballer1->id}}</td>
         <td><a href="/footballer/{{$footballer1->id}}" style="text-decoration: none;color:black">{{$footballer1->name}}<a/></td>
         <td>{{$footballer1->year_of_birth}}</td>
