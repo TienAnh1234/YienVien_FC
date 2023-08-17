@@ -34,6 +34,14 @@ class FootballerController extends Controller
     public function store(Request $request)
     {
         $footballer = new Footballer();
+        if ($request->hasFile('image')) {
+            $footballer->image = $request->file('image')->store('public/images');
+            // phương thức store sẽ lưu file vừa tải lên vào trong thư mục storage/app/public
+            // nếu đã có public nó sẽ nhảy vào public, nếu chưa có nó sẽ tạo public rồi nhảy vào
+            // nếu đã có images nó sẽ nhảy vào images, nếu chưa có nó sẽ tạo images rồi nhảy vào
+            // tên ảnh sẽ có dạng public/images/....
+            $footballer->image = str_replace('public/', '/upload/', $footballer->image);
+        }
         $footballer->name = $request->name;
         $footballer->year_of_birth = $request->year_of_birth;
         $footballer->ethnic = $request->ethnic;
