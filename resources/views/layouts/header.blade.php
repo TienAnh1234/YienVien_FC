@@ -11,15 +11,17 @@
         </div>
 
         <div class="col-sm-5">
-            <form action="#">
+            
                 <div class="input-group">
                     <div class="form-outline">
-                        <input type="search" class="form-control" placeholder="Search">
+                        <form action="/search" method="post">
+                            @csrf
+                            <input type="search" class="form-control" name="keyword" placeholder="Search">
+                            <input type="submit" class="btn btn-primary" value="Search"> 
+                        </form>
                     </div>
-
-                    <input type="submit" class="btn btn-primary" value="Search"> 
                 </div>
-            </form>
+        
         </div>
     </div>
 </div>

@@ -4,7 +4,7 @@
 
 <div class="container">
 
-    <form action="/footballer/{{$footballer->id}}" method="post">
+    <form action="/footballer/{{$footballer->id}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
     <div class="form-group">
@@ -44,6 +44,11 @@
         <br>
         <label for="enterHeight">Height</label>
         <input type="text" class="form-control" id="enterHeight" value="{{$footballer->year_of_birth}}" name="height"><br>
+    </div>
+
+    <div class="form-group">
+        <label for="formFileDisabled" class="form-label">Choose Image</label>
+        <input class="form-control" type="file" id="formFileDisabled" name="image">
     </div>
 
     <div class="form-group">

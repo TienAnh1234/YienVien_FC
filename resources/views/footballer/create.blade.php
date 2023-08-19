@@ -6,7 +6,7 @@
 
     <form action="/footballer" method="post" enctype="multipart/form-data">
         @csrf
-    .<div class="form-group">
+    <div class="form-group">
         <label for="formFileDisabled" class="form-label">Choose Image</label>
         <input class="form-control" type="file" id="formFileDisabled" name="image">
     </div>

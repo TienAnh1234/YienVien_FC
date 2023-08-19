@@ -6,6 +6,7 @@ use App\Models\Address;
 use App\Models\Footballer;
 use App\Models\Position;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FootballerController extends Controller
 {
@@ -89,9 +90,13 @@ class FootballerController extends Controller
         $footballer->height = $request->height;
         $footballer->weight = $request->weight;
         $footballer->address_id = $request->address_id;
+        if ($request->hasFile('image')) {
+            $footballer->image = $request->file('image')->store('public/images');
+             $footballer->image = str_replace('public/', '/upload/', $footballer->image);
+        }
         $footballer->save();
         $footballer->positions()->sync($request->position);
-        return redirect('/footballer');
+       return redirect('/footballer');
     }
 
     /**

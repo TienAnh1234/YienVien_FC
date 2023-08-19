@@ -3,8 +3,11 @@
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\FootballerController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\SearchController;
+
 
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +35,13 @@ Route::resources([
 Route::resources([
     'footballer' => FootballerController::class,
 ]);
+
+Route::post('/search', [SearchController::class, 'index']); 
+
+
+   
+    
+
 
 
 
