@@ -65,10 +65,7 @@
     </tbody>
   </table>
 </div>
-  <div class="d-flex justify-content-center">
-        {{ $position->links() }}
-        <!-- method thường links() dùng để hiện ra thanh điều hướng tới các trang tiếp theo -->
-  </div>
+
 @endsection
 
 

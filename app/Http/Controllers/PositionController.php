@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Position;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+Paginator::useBootstrap();
 
 class PositionController extends Controller
 {
@@ -12,7 +14,9 @@ class PositionController extends Controller
      */
     public function index()
     {
-        $position = Position::All();
+        $position = Position::paginate(5);
+        // câu truy vấn lấy tất cả bản ghi trong bảng positions và cài đặt chỉ được 5 bản ghi trên mỗi trang
+        // trả về 1 đối tượng paginator chứa 1 mảng các bản ghi đã lưu và ghi hiển thị chỉ hiển thị 5 bản ghi mỗi trang 
         return view('position.index',['position' => $position]);
     }
 

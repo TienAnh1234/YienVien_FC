@@ -1,8 +1,37 @@
 @extends('layouts.app')
 @section('title','footballer')
+
+@section('header')
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-sm-7">
+            <ul class="nav ">
+                <li class="nav-item btn btn-info" style="margin:1%"><a href="/address" class="nav-link">Address</a></li>
+                <li class="nav-item btn btn-info" style="margin:1%"><a href="/position" class="nav-link">Position</a></li>
+                <li class="nav-item btn btn-info" style="margin:1%"><a href="/footballer" class="nav-link">Footballer</a></li>
+
+            </ul>
+        </div>
+
+        <div class="col-sm-5">
+            
+                <div class="input-group">
+                    <div class="form-outline">
+                        <form action="/searchFootballer" method="get">
+                            @csrf
+                            <input type="search" class="form-control" name="keyword" placeholder="Search">
+                            <input type="submit" class="btn btn-primary" value="Search"> 
+                        </form>
+                    </div>
+                </div>
+        
+        </div>
+    </div>
+</div>
+@endsection
+
 @section('main')
-
-
 <div class="container">
 
   <table class="table">
@@ -21,7 +50,7 @@
     <tbody>
     @foreach($footballer as $footballer1)  
     <tr>
-        <td><img src="http://127.0.0.1:8000{{$footballer1->image}}" class="img-fluid" alt="Responsive image"></td>
+        <td><img src="http://127.0.0.1:8000{{$footballer1->image}}" class="img-fluid" alt="Responsive image" style="width:70px;height:90px"></td>
         <td>{{$footballer1->id}}</td>
         <td><a href="/footballer/{{$footballer1->id}}" style="text-decoration: none;color:black">{{$footballer1->name}}<a/></td>
         <td>{{$footballer1->year_of_birth}}</td>
@@ -42,6 +71,10 @@
   </table>
 </div>
 
+<div class="d-flex justify-content-center">
+        {{ $footballer->links() }}
+        <!-- method thường links() dùng để hiện ra thanh điều hướng tới các trang tiếp theo -->
+  </div>
 @endsection
 
 

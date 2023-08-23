@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','position')
+@section('title','footballer')
 
 @section('header')
 <div class="container">
@@ -18,7 +18,7 @@
             
                 <div class="input-group">
                     <div class="form-outline">
-                        <form action="/searchPosition" method="get">
+                        <form action="/searchFootballer" method="get">
                             @csrf
                             <input type="search" class="form-control" name="keyword" placeholder="Search">
                             <input type="submit" class="btn btn-primary" value="Search"> 
@@ -32,47 +32,48 @@
 @endsection
 
 @section('main')
-
 <div class="container">
-           
+
   <table class="table">
     <thead>
       <tr>
+        <th>Image</th>
+        <th>ID</th>
         <th>Name</th>
-        <th>Abbreviations</th>
-        <th>Description</th>
+        <th>Year Of Birth</th>
+        <th>Ethnic</th>
+        <th>Gender</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
     </thead>
     <tbody>
-    @foreach($position as $position1)  
+    @foreach($footballer as $footballer1)  
     <tr>
-        
-        <td>{{$position1->name}}</td>
-        <td>{{$position1->abbreviations}}</td>
-        <td>{{$position1->description}}</td>
-        <td><a href="/position/{{$position1->id}}/edit" class="btn btn-success">Edit</a></td>
+        <td><img src="http://127.0.0.1:8000{{$footballer1->image}}" class="img-fluid" alt="Responsive image" style="width:70px;height:90px"></td>
+        <td>{{$footballer1->id}}</td>
+        <td><a href="/footballer/{{$footballer1->id}}" style="text-decoration: none;color:black">{{$footballer1->name}}<a/></td>
+        <td>{{$footballer1->year_of_birth}}</td>
+        <td>{{$footballer1->ethnic}}</td>
+        <td>{{$footballer1->gender}}</td>        
+        <td><a href="/footballer/{{$footballer1->id}}/edit" class="btn btn-success">Edit</a></td>
         <td>
-        <form action ="/position/{{$position1->id}}" method="post">
+        <form action ="/footballer/{{$footballer1->id}}" method="post">
                 @csrf
                 @method ('DELETE')
                 <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure?');">Delete</button>
                 </form> 
         </td>
+        
       </tr>
       @endforeach
     </tbody>
   </table>
 </div>
-  <div class="d-flex justify-content-center">
-        {{ $position->links() }}
-        <!-- method thường links() dùng để hiện ra thanh điều hướng tới các trang tiếp theo -->
-  </div>
+
 @endsection
 
 
 @section('button')
-<a href="position/create" class="btn btn-success">Create position</a>
+<a href="/footballer/create" class="btn btn-success">Create footballer</a>
 @endsection
-

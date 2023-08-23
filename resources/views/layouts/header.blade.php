@@ -14,7 +14,7 @@
             
                 <div class="input-group">
                     <div class="form-outline">
-                        <form action="/search" method="post">
+                        <form action="/search" method="get">
                             @csrf
                             <input type="search" class="form-control" name="keyword" placeholder="Search">
                             <input type="submit" class="btn btn-primary" value="Search"> 

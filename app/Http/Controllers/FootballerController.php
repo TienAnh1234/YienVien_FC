@@ -7,6 +7,8 @@ use App\Models\Footballer;
 use App\Models\Position;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Pagination\Paginator;
+Paginator::useBootstrap();
 
 class FootballerController extends Controller
 {
@@ -15,7 +17,7 @@ class FootballerController extends Controller
      */
     public function index()
     {
-        $footballer = Footballer::All();
+        $footballer = Footballer::paginate(5);
         return view('footballer.index',['footballer' => $footballer]);
     }
 
@@ -32,6 +34,7 @@ class FootballerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    
     public function store(Request $request)
     {
         $footballer = new Footballer();
@@ -49,7 +52,7 @@ class FootballerController extends Controller
         $footballer->gender = $request->gender;
         $footballer->height = $request->height;
         $footballer->weight = $request->weight;
-        $footballer->address_id = $request->address_id;
+        $footballer->address_id = $request->address_id; 
         $footballer->save();
         $footballer->positions()->attach($request->position);
         return redirect('/footballer');
@@ -62,6 +65,7 @@ class FootballerController extends Controller
     {
        $footballer = Footballer::find($id);
        return view('footballer.show',['footballer'=>$footballer]);
+       //dd($footballer);
 
     }
 
@@ -91,8 +95,10 @@ class FootballerController extends Controller
         $footballer->weight = $request->weight;
         $footballer->address_id = $request->address_id;
         if ($request->hasFile('image')) {
+            Storage::delete(str_replace('/upload/','public/', $footballer->image));
+            //Storage::delete() trỏ tới storage/app
             $footballer->image = $request->file('image')->store('public/images');
-             $footballer->image = str_replace('public/', '/upload/', $footballer->image);
+            $footballer->image = str_replace('public/', '/upload/', $footballer->image);    
         }
         $footballer->save();
         $footballer->positions()->sync($request->position);
