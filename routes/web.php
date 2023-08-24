@@ -1,11 +1,10 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\FootballerController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\SearchController;
-
-
 use Illuminate\Support\Facades\Route;
 
 
@@ -39,7 +38,6 @@ Route::resources([
 Route::get('/searchFootballer', [SearchController::class, 'searchFootballer']); 
 Route::get('/searchAddress', [SearchController::class, 'searchAddress']); 
 Route::get('/searchPosition', [SearchController::class, 'searchPosition']); 
-
 
 
 

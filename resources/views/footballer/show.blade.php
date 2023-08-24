@@ -72,7 +72,6 @@
             <td>{{$footballer->address->name}}</td>
           </tr>
 
-        
             @foreach($footballer->positions as $position)
           <tr>
             <th>Position</th>  
